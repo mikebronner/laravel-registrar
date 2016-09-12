@@ -1,0 +1,28 @@
+{
+    "name": "genealabs/laravel-registrar",
+    "description": "User account activation via email confirmation for Laravel.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "GeneaLabs, LLC",
+            "email": "hello@genealabs.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/routing": "5.3.*",
+        "illuminate/view": "5.3.*",
+        "laracasts/flash": "^2.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "*"
+    },
+    "autoload": {
+        "classmap": [],
+        "psr-4": {
+            "GeneaLabs\\LaravelRegistrar\\": "src/",
+            "GeneaLabs\\LaravelRegistrar\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable"
+}
