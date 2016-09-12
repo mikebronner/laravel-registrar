@@ -29,7 +29,18 @@ GeneaLabs\LaravelRegistrar\Providers\LaravelRegistrarService::class,
 Add the following trait to your login controller
  `/app/Http/Controllers/Auth/LoginController.php`:
 ```php
-use ActivatesUsers {
+use GeneaLabs\LaravelRegistrar\Traits\ActivatesUsers {
     ActivatesUsers::credentials insteadof AuthenticatesUsers;
 }
 ```
+
+And finally, add this trait to your User model:
+```php
+use GeneaLabs\LaravelRegistrar\Traits\Activatable;
+```
+
+## Usage
+Each time a new user is created, an activation token will be added to their
+ record and an email activation notification sent out with a link that will
+ activate their user account by removing the activation token and setting the
+ activation timestamp. The user will then be able to log into their account.
