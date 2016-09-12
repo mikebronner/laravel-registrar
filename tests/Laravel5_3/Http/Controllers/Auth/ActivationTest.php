@@ -1,6 +1,7 @@
 <?php namespace GeneaLabs\LaravelRegistrar\Tests\Laravel5_3\Http\Controllers\Auth;
 
 use GeneaLabs\LaravelRegistrar\Tests\Laravel5_3\TestCase;
+use Carbon\Carbon;
 
 class ActivationTest extends TestCase
 {
@@ -44,6 +45,28 @@ class ActivationTest extends TestCase
 
         // Assert
         $this->seePageIs('/login');
+    }
+
+    public function testActivatedUserCanLogIn()
+    {
+        // Arrange
+        $user = app(config('auth.providers.users.model'))->create([
+            'name' => 'John Doe',
+            'email' => 'john.doe@noemail.com',
+            'password' => bcrypt('secret'),
+        ]);
+        $user->activation_token = '';
+        $user->activated_at = (new Carbon)->now();
+        $user->save();
+        $this->visit('/login')
+            ->type('john.doe@noemail.com', 'email')
+            ->type('secret', 'password');
+
+        // Act
+        $result = $this->press('Login');
+
+        // Assert
+        $this->see('You are logged in!');
     }
 
     public function testUserCanActivateAccount()
