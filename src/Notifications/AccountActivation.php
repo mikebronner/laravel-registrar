@@ -16,7 +16,7 @@ class AccountActivation extends Notification implements ShouldQueue
 
     public function toMail($notifiable) : MailMessage
     {
-        $url = url("/register/activate/{$notifiable->activation_token}");
+        $url = url("/registration/activate/{$notifiable->activation_token}");
         $intro = "Your email has been used to register an account. Before ";
         $intro .= "enabling the account, we would like to make sure it's ";
         $intro .= "really you.";
