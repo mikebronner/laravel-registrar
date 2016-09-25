@@ -44,3 +44,18 @@ Each time a new user is created, an activation token will be added to their
  record and an email activation notification sent out with a link that will
  activate their user account by removing the activation token and setting the
  activation timestamp. The user will then be able to log into their account.
+
+### Customization
+You can customize the notification email by implementing your own Notification
+class, then overriding the following method in your User class:
+```php
+protected function sendNotification()
+{
+    static::created(function ($user) {
+        $user->notify(new MyOwnNotificationClass($user));
+    });
+}
+```
+
+To alter the notification template itself, follow the steps outlined in the
+ Laravel documentation: https://laravel.com/docs/5.3/notifications#customizing-the-templates.

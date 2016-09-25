@@ -7,11 +7,20 @@ trait Activatable
 {
     public static function bootActivatable()
     {
+        $this->initialize();
+        $this->sendNotification();
+    }
+
+    protected function initialize()
+    {
         static::creating(function ($user) {
             $user->activation_token = str_random(64);
             $user->activated_at = null;
         });
+    }
 
+    protected function sendNotification()
+    {
         static::created(function ($user) {
             $user->notify(new AccountActivation($user));
         });
