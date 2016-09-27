@@ -49,7 +49,7 @@ Each time a new user is created, an activation token will be added to their
 You can customize the notification email by implementing your own Notification
 class, then overriding the following method in your User class:
 ```php
-protected function sendNotification()
+protected static function sendNotification()
 {
     static::created(function ($user) {
         $user->notify(new MyOwnNotificationClass($user));
