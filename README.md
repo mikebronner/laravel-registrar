@@ -29,14 +29,22 @@ GeneaLabs\LaravelRegistrar\Providers\LaravelRegistrarService::class,
 Add the following trait to your login controller
  `/app/Http/Controllers/Auth/LoginController.php`:
 ```php
-use GeneaLabs\LaravelRegistrar\Traits\ActivatesUsers {
-    ActivatesUsers::credentials insteadof AuthenticatesUsers;
-}
+use GeneaLabs\LaravelRegistrar\Traits\ActivatesUsers;
+
+//class LoginController extends Controller
+//{
+    use ActivatesUsers {
+        ActivatesUsers::credentials insteadof AuthenticatesUsers;
+    }
 ```
 
 And finally, add this trait to your User model:
 ```php
 use GeneaLabs\LaravelRegistrar\Traits\Activatable;
+
+//class User
+//{
+ use Activatable;
 ```
 
 ## Usage
