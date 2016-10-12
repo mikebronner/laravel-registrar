@@ -17,8 +17,8 @@ class AddActivationFieldsToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropIfExists('activated_at');
-            $table->dropIfExists('activation_token');
+            $table->dropColumn('activated_at');
+            $table->dropColumn('activation_token');
         });
     }
 }
