@@ -12,16 +12,15 @@ class Activation extends Controller
         $user = $users->where('activation_token', $activationToken)->first();
 
         if (! $user) {
-            dd('test');
             $message = "Your account has either already been activated, or ";
             $message .= "there is a typo in your activation token.";
-            flash($message, 'danger');
+            app('flash')->danger($message);
 
             return redirect('/');
         }
 
         $user->activate();
-        flash('Thank you for activating your account.', 'success');
+        app('flash')->success('Thank you for activating your account.');
 
         return redirect('/login');
     }
