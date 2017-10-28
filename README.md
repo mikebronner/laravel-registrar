@@ -1,4 +1,6 @@
 # Registrar for Laravel
+[![Join the chat at https://gitter.im/GeneaLabs/laravel-registrar](https://badges.gitter.im/GeneaLabs/laravel-registrar.svg)](https://gitter.im/GeneaLabs/laravel-registrar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 User account activation via email confirmation for Laravel.
 
 ## Features
