@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelRegistrarService extends ServiceProvider
+class Service extends ServiceProvider
 {
     protected $defer = false;
 
