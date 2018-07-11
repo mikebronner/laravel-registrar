@@ -10,8 +10,8 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "illuminate/routing": "5.3.*",
-        "illuminate/view": "5.3.*",
+        "illuminate/routing": "5.3 - 5.6",
+        "illuminate/view": "5.3 - 5.6",
         "genealabs/bones-flash": "*"
     },
     "require-dev": {
