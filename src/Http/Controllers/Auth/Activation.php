@@ -1,8 +1,8 @@
 <?php namespace GeneaLabs\LaravelRegistrar\Http\Controllers\Auth;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class Activation extends Controller
 {
@@ -14,13 +14,13 @@ class Activation extends Controller
         if (! $user) {
             $message = "Your account has either already been activated, or ";
             $message .= "there is a typo in your activation token.";
-            app('flash')->danger($message);
+            app('messenger')->send($message, "Activation Failed", "danger");
 
             return redirect('/');
         }
 
         $user->activate();
-        app('flash')->success('Thank you for activating your account.');
+        app('messenger')->send('Thank you for activating your account.', "Success!", "success", true);
 
         return redirect('/login');
     }

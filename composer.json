@@ -12,7 +12,7 @@
         "php": ">=7.0.0",
         "illuminate/routing": "5.3 - 5.6",
         "illuminate/view": "5.3 - 5.6",
-        "genealabs/bones-flash": "*"
+        "genealabs/laravel-messenger": "*"
     },
     "require-dev": {
         "phpspec/phpspec": "*"
@@ -22,6 +22,13 @@
         "psr-4": {
             "GeneaLabs\\LaravelRegistrar\\": "src/",
             "GeneaLabs\\LaravelRegistrar\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GeneaLabs\\LaravelRegistrar\\Providers\\Service"
+            ]
         }
     },
     "minimum-stability": "stable"
