@@ -22,10 +22,18 @@ trait Activatable
     protected static function sendNotification()
     {
         static::created(function ($user) {
-            $user->notify(new AccountActivation($user));
+            if ($user->canBeActivated && ! $user->isActivated) {
+                $user->notify(new AccountActivation($user));
+            }
+        });
+
+        static::updated(function ($user) {
+            if ($user->canBeActivated && ! $user->isActivated) {
+                $user->notify(new AccountActivation($user));
+            }
         });
     }
-    
+
     public function activate()
     {
         $this->activation_token = '';
@@ -36,6 +44,11 @@ trait Activatable
     public function routeNotificationForMail()
     {
         return $this->email;
+    }
+
+    public function getCanBeActivatedAttribute() : bool
+    {
+        return true;
     }
 
     public function getIsActivatedAttribute() : bool

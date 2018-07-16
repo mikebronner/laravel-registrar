@@ -55,6 +55,17 @@ Each time a new user is created, an activation token will be added to their
  activate their user account by removing the activation token and setting the
  activation timestamp. The user will then be able to log into their account.
 
+### Conditional Activation Notices
+To send out the notification email only when a certain condition is met,
+override the `getCanBeActivatedAttribute()` method in your `User` class. By
+default this method returns true, unless you override it.
+```php
+public function getCanBeActivatedAttribute() : bool
+{
+    // return true or false based on your specific condition.
+}
+```
+
 ### Customization
 You can customize the notification email by implementing your own Notification
 class, then overriding the following method in your User class:
