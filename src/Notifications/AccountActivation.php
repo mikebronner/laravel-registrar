@@ -1,9 +1,9 @@
 <?php namespace GeneaLabs\LaravelRegistrar\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class AccountActivation extends Notification implements ShouldQueue
 {
@@ -29,6 +29,7 @@ class AccountActivation extends Notification implements ShouldQueue
             ->line($intro)
             ->action('Activate Your Account', $url)
             ->line($outro)
-            ->line('Regards,<br>Your ' . config('app.name') . ' Team');
+            ->line('Regards,')
+            ->line('Your ' . config('app.name') . ' Team');
     }
 }
