@@ -17,15 +17,7 @@ class Service extends ServiceProvider
         ], 'assets');
     }
 
-    public function register()
-    {
-
-    }
-
-    /**
-     * @return array
-     */
-    public function provides()
+    public function provides() : array
     {
         return ['genealabs-laravel-registrar'];
     }

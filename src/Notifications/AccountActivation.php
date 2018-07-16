@@ -28,8 +28,6 @@ class AccountActivation extends Notification implements ShouldQueue
             ->subject('Account Activation')
             ->line($intro)
             ->action('Activate Your Account', $url)
-            ->line($outro)
-            ->line('Regards,')
-            ->line('Your ' . config('app.name') . ' Team');
+            ->line($outro);
     }
 }
