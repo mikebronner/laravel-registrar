@@ -7,30 +7,20 @@ trait Activatable
 {
     public static function bootActivatable()
     {
-        self::initialize();
-        self::sendNotification();
-    }
-
-    protected static function initialize()
-    {
         static::creating(function ($user) {
-            $user->activation_token = str_random(64);
-            $user->activated_at = null;
+            $user->setAccountActivationTokenIfEligible();
         });
-    }
 
-    protected static function sendNotification()
-    {
+        static::updating(function ($user) {
+            $user->setAccountActivationTokenIfEligible();
+        });
+
         static::created(function ($user) {
-            if ($user->canBeActivated && ! $user->isActivated) {
-                $user->notify(new AccountActivation($user));
-            }
+            $user->sendAccountActivationNoticeIfEligible();
         });
 
         static::updated(function ($user) {
-            if ($user->canBeActivated && ! $user->isActivated) {
-                $user->notify(new AccountActivation($user));
-            }
+            $user->sendAccountActivationNoticeIfEligible();
         });
     }
 
@@ -41,6 +31,21 @@ trait Activatable
         $this->save();
     }
 
+    public function setAccountActivationTokenIfEligible()
+    {
+        if (! $this->isActivated && ! $this->hasActivationToken) {
+            $this->activation_token = str_random(64);
+            $this->activated_at = null;
+        }
+    }
+
+    public function sendAccountActivationNoticeIfEligible()
+    {
+        if ($this->canBeActivated && ! $this->isActivated) {
+            $this->notify(new AccountActivation($this));
+        }
+    }
+
     public function routeNotificationForMail()
     {
         return $this->email;
@@ -49,6 +54,11 @@ trait Activatable
     public function getCanBeActivatedAttribute() : bool
     {
         return true;
+    }
+
+    public function getHasActivationTokenAttribute() : bool
+    {
+        return ($this->activation_token !== null);
     }
 
     public function getIsActivatedAttribute() : bool
