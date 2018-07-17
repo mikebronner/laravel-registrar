@@ -36,7 +36,7 @@ use GeneaLabs\LaravelRegistrar\Traits\ActivatesUsers;
 //class LoginController extends Controller
 //{
     use ActivatesUsers {
-        ActivatesUsers::credentials insteadof AuthenticatesUsers;
+        ActivatesUsers::attemptLogin insteadof AuthenticatesUsers;
     }
 ```
 
