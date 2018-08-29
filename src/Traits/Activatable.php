@@ -36,7 +36,6 @@ trait Activatable
         if (! $this->isActivated && ! $this->hasActivationToken) {
             $this->activation_token = str_random(64);
             $this->activated_at = null;
-            $this->save();
         }
     }
 
