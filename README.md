@@ -1,4 +1,4 @@
-**Note:** This package will be retired when Laravel 5.7 gets released, as it will supercede the functionality of this package.
+# This package is retired as of Laravel 5.7. Please use Laravel's Email Verification functionality: https://laravel.com/docs/5.7/verification
 
 # Registrar for Laravel
 [![Join the chat at https://gitter.im/GeneaLabs/laravel-registrar](https://badges.gitter.im/GeneaLabs/laravel-registrar.svg)](https://gitter.im/GeneaLabs/laravel-registrar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
